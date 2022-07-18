@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon_io/favicon.ico" type="image/x-icon">
+    <title>Site de vendas</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0%;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .salame{
+            
+            width: 2rem;
+            height: 2rem;
+            position: fixed;
+            z-index: 100;
+            right: 35px;
+            top:35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            cursor:pointer;
+        }
+
+        .time{
+            width: 100%;
+            height: .1rem;
+            background-color: aliceblue;
+            box-shadow: 1px 2px 1px rgb(64, 231, 231) ;
+        }
+        
+
+
+
+
+        header{
+            width: 100%;
+            height: 100vh;
+            overflow:hidden;
+            position: relative;
+        }
+
+        .img-central{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgb(39, 34, 34);
+        }
+
+        .img-central img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity:0.5;
+            animation: ampliar 20s;
+        }
+
+        .banner{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+        }
+
+        .banner h1{
+            color:rgb(158, 168, 139);
+            font-size: 60px;
+            font-family:serif;
+            text-shadow: 2px 2px 2px  rgb(241, 237, 237);
+            margin-bottom: 35px;
+            margin-left: 100px;
+            animation: mover 5s;
+            
+        }
+
+        .banner p{
+            color:rgb(236, 205, 163);
+            font-size: 30px;
+            font-family:serif;
+            text-align: center;
+            margin-left: 75px;
+            margin-bottom: 30px;
+            animation:mover 5s;
+        }
+
+        .banner button{
+            color:rgb(233, 214, 173);
+            font-family: serif;
+            background-color: rgb(233, 221, 221);
+            font-size: 19px;
+            margin-left: 229px;
+            padding-left: 4px;
+            padding-right: 6px;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: mover 5s;
+        }
+
+        .banner button:hover{
+            background-color: rgb(233, 221, 221);
+        }
+
+        a{color:rgb(3, 3, 3);}
+        a:visited{color: rgb(99, 78, 78);}
+
+        @keyframes ampliar {
+            0%{
+                transform: scale(1.3);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+
+        @keyframes mover{
+            0%{
+                transform:translateX(10em);
+            }
+            100%{
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar{
+            width: 20rem;
+            height: 100vh;
+            background-color: rgb(157, 195, 228);
+            position: fixed;
+            top: 0;
+            right: -20rem;
+            
+        }
+
+        
+
+        .sidebar.show {
+            right: 0;
+        }
+        
+
+        
+
+        .menu{
+            position: absolute;
+            top: 40%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            
+        }
+
+        .menu2{
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .menu3{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            color:rgb(45, 207, 153);
+        }
+
+        .menu3:hover{
+            color:rgb(255, 255, 255);
+        }
+
+        .sessao-conhecimentos{
+            padding-top: 7%;
+            background-color: rgb(159, 221, 221);
+        }
+
+        .conhecimentos{
+            display: grid;
+            grid-template-columns:repeat(16, 1fr);
+            grid-template-rows: repeat(6, 6rem);
+            row-gap: 2rem;
+        }
+
+        .conhecimento:nth-child(1){
+            grid-column:4 / 7;
+            grid-row: 1 / 3;
+        }
+
+        .conhecimento:nth-child(2){
+            grid-column:3 / 6;
+            grid-row: 3 / 5;
+        }
+
+        .conhecimento:nth-child(3){
+            grid-column:4 / 7;
+            grid-row: 5 / -1;
+        }
+
+        .conhecimento:nth-child(4){
+            grid-column:11 / 14;
+            grid-row: 1 / 3;
+        }
+
+        .conhecimento:nth-child(5){
+            grid-column:12 / 15;
+            grid-row: 3 / 5;
+        }
+
+        .conhecimento:nth-child(6){
+            grid-column:11 / 14;
+            grid-row: 5 / -1;
+        }
+
+        .foto-meio{
+
+            grid-column:  7/11;
+            grid-row: 2/ 6;
+            width: 100%;
+            
+        }
+
+        .foto-meio img{
+            object-fit: cover;
+            width: 90%;
+            padding-top: 30px;
+        }
+
+        .footer-{
+            padding-top: 100px;
+            text-align: center;
+            font-family:Arial, Helvetica, sans-serif;
+            
+        }
+        .footer-p{background-color: rgba(102, 39, 160, 0.363);}
+
+        
+
+
+    </style>
+  
+    <style>
+         body {
+            display: flex;
+            flex-direction: center;
+            justify-content: center;
+            align-items: center;
+            
+        } 
+        
+        .slider {
+            
+            width: 80%;
+            max-width: 500px;
+            height: 25vw;
+            max-height: 150px;
+
+            margin-right: 1000px;
+        
+            position: relative;
+            margin-top: 10px;
+            
+            
+            
+        }
+        
+        .slider img{
+            opacity: 0;
+        
+            position: absolute;
+        
+            width: 245%;
+            height: 150%;
+
+            margin-left: 60px;
+            
+            
+            
+            
+
+            
+        
+            object-fit: cover;
+        
+            transition: opacity 800ms;
+        }
+        
+        .slider img.selected { 
+            opacity: 1;
+        }
+
+        
+
+        
+
+
+
+    </style>
+
+    
+
+    
+    
+</head>
+<body>
+
+    <div class="conteudo">
+
+        <div class="salame">
+            <div class="time" id="fruta1"></div>
+            <div class="time" id="fruta2"></div>
+            <div class="time" id="fruta3"></div>
+        </div>
+
+
+
+        <header>
+            <div class="img-central">
+                <img src="imagens/info.jpg"  alt="isso e uma imagem">
+            </div>
+            <div class="banner">
+                <h1>Site de Vendas</h1>
+                <p>Jonathan Silva</p>
+                <button><a href="#" target="_blank">Saiba mais</a></button>
+            </div>
+
+        </header>
+    
+        <div class="sidebar">
+            <nav>
+                <ul class="menu">
+                    <li class="menu2"><a href="index.html" class="menu3" >Home</a></li>
+                    <li class="menu2"><a href="orcamento.html" class="menu3" >Orçamento</a></li>
+                    <li class="menu2"><a href="contato.html" class="menu3" >Contato</a></li>
+                    <li class="menu2"><a href="#" class="menu3" >Duvidas</a></li>
+                </ul>
+
+               
+
+            </nav>
+        </div>
+
+        <section class="sessao-conhecimentos">
+            
+            <div class="conhecimentos">
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab1"><img src="imagens/favicon.ico" alt="image"> </i>
+                        <h3><a href="Cadastro/assets/cadastro.html">Formulario</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem ter seu proprio site, de formulario.</p>
+                    </div>
+                </div>
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab2"><img src="imagens/comercio.ico" alt=""></i>
+                        <h3><a href="Markt/slide.html">Marketing</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem ter seu proprio site, para pessoas que tem seu proprio marketing</p>
+                    </div>
+                </div>
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab3"><img src="imagens/comida.ico" alt="isso e uma imagem"></i>
+                        <h3><a href="sorvete.html">Comida</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem ter seu proprio site, para vende comida e outros alimentos.</p>
+                    </div>
+                </div>
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab4"><img src="imagens/R.ico" alt="isso e uma imagem"></i>
+                        <h3><a href="lojaderoupa.html">Roupas</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem ter seu proprio site, para pessoas que querem tu sua loja virtual de roupas.</p>
+                    </div>
+                </div>
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab5"><img src="imagens/logi.ico" alt="isso e uma imagem"></i>
+                        <h3><a href="logistica/logistica.html">Brinquedos</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem ter seu proprio site, para  logistica</p>
+                    </div>
+                </div>
+                <div class="conhecimento">
+                    <div class="conhecimento-header">
+                        <i class="fab6"><img src="imagens/marcas.ico" alt="isso e uma imagem"></i>
+                        <h3><a href="curriculo/curriculo.html">Curriculo</a></h3>
+                    </div>
+                    <div class="conhecimento-text">
+                        <p>Esse site e especifico para pessoas que querem te um curriculo.</p>
+                    </div>
+                </div>
+                <div class="foto-meio">
+                    <img src="imagens/logo.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        
+        <div class="slider">
+            <img class="selected" src="imagens/comercio.jpg" alt="Image1">
+            <img src="imagens/marktig 1.jfif" alt="Image2">
+            <img src="imagens/maos.jpg" alt="Image3">
+            <img src="imagens/sorvete3.webp" alt="Image4">
+        </div>
+
+        <footer>
+            <div class="footer-">
+                <p class="footer-p">
+                    Copyright &copy; 2022, FirstJS DS - Todos os direitos reservados
+                </p>
+            </div>
+        </footer>
+        
+
+        
+        
+
+
+    </div>
+
+
+
+    
+
+
+    <script>
+        var salame = document.querySelector(".salame");
+
+        salame.addEventListener("click", function(){
+        var sidebar = document.querySelector(".sidebar").classList.toggle("show");
+
+       });
+
+    </script>
+    
+    <script>
+            let time = 5000,
+    currentImageIndex = 0,
+    images = document
+                .querySelectorAll(".slider img")
+    max = images.length;
+
+function nextImage() {
+
+    images[currentImageIndex]
+        .classList.remove("selected")
+
+    currentImageIndex++
+
+    if(currentImageIndex >= max)
+        currentImageIndex = 0
+
+    images[currentImageIndex]
+        .classList.add("selected")
+}
+
+function start() {
+    setInterval(() => {
+        // troca de image
+        nextImage()
+    }, time)
+}
+
+window.addEventListener("load", start)
+    </script>
+    
+
+</body>
+
+
+
+
+
+
+</html>

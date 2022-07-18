@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon_io/favicon.ico" type="image/x-icon">
+    <title>Sorvete</title>
+    <style>
+
+        *{
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        
+        }
+
+        #produtos{
+            max-width: 900px;
+            margin:0 auto;
+            padding:0 2%;
+            display:flex;
+            
+        }
+        #carrinho{
+            max-width: 900px;
+            margin:0 auto;
+            padding:0 2%;
+            display:block;
+        }
+        .produto-single{
+            width: 32%;
+            margin-right: 1%;
+            border:1px solid #ccc;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .produto-single img{
+            max-width: 100%;
+        }
+        .produto-single p{
+            text-align: center;
+            font-size: 16px;
+            padding: 10px;
+        }
+        .produto-single a{
+            text-decoration: none;
+            color:white;
+            background-color: #5fb382;
+            text-align: center;
+            display: block;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        h2{
+            color:rgb(223, 223, 223);
+            background-color: #866bbd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .info-single-checkout{
+            border-bottom:2px dotted;
+            padding: 10px 0;
+        }
+
+        img{
+            max-width: 640px;
+            transform: translateY(0px);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float{
+            0%{
+                transform: translateY(0px);
+            }
+            50%{
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h2>Sorvetes</h2>
+    <div id="produtos">
+        
+    </div> <!--produtos-->
+
+    <h2>Carrinho:</h2>
+    <div id="carrinho">
+        
+    </div> <!--carrinho-->
+
+    <script>
+        const items = [
+            {
+                id: 0,
+                nome: 'chocolate',
+                img: 'chocolate.jpg',
+                quantidade: 0
+            },
+            {
+                id: 1,
+                nome: 'sorvete de choquito',
+                img: 'Chokito.jpg',
+                quantidade: 0
+            },
+            {
+                id: 2,
+                nome: 'creme de leite',
+                img: 'creme.jpg',
+                quantidade: 0
+            },
+            
+            
+            {
+                id: 3,
+                nome: 'morango',
+                img: 'morango.jpg',
+                quantidade: 0
+                
+            }
+
+            
+         
+         ]
+
+            inicializarLoja = () => {
+                var containerProdutos = document.getElementById('produtos');
+                items.map((vaL)=>{
+                    containerProdutos.innerHTML+= `
+                     
+                    <div class="produto-single">
+                            <img src=" `+vaL.img+`" />
+                            <p> `+vaL.nome+`</p>
+                            <a key=`+vaL.id+`  href="#">Adicionar ao carrinho</a>
+                    </div>
+                    
+                    `;
+                })
+            }
+
+            inicializarLoja();
+
+            atualizarCarrinho = () => {
+                var containerCarrinho = document.getElementById('carrinho');
+                containerCarrinho.innerHTML = "";
+                items.map((vaL)=>{
+                    if(vaL.quantidade > 0){
+                    containerCarrinho.innerHTML+= `
+                    <div class="info-single-checkout"> 
+                   <p style="float:left;">Produto: `+vaL.nome+`</p>
+                   <p style="float:right;">Quantidade:`+vaL.quantidade+`</p>
+                   <div style="clear:both"></div>
+                   
+                    </div>
+                    `;
+                     }
+                })
+            }
+
+            var links = document.getElementsByTagName('a');
+
+            for(var i = 0; i < links.length; i++){
+                links[i].addEventListener("click",function(){
+                    let key = this.getAttribute('key');
+                    items[key].quantidade++;
+                    atualizarCarrinho();
+                    return false;
+                })
+            }
+
+
+    </script>
+
+</body>
+</html>
